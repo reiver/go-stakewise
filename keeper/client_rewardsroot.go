@@ -5,7 +5,7 @@ import (
 )
 
 // RewardsRoot calls the "rewardsRoot" method on the StakeWise Keeper contract, and return the URI to the associate metadata.
-func (receiver Client) RewardsRoot() (string, error) {
+func (receiver Client) RewardsRoot() ([32]byte, error) {
 	const methodname string = "rewardsRoot"
 
 	results, err := receiver.Call(methodname)
@@ -13,7 +13,7 @@ func (receiver Client) RewardsRoot() (string, error) {
 		return "", err
 	}
 
-	var value string
+	var value [32]byte
         {
 		var result0 interface{}
 		{
@@ -30,7 +30,7 @@ func (receiver Client) RewardsRoot() (string, error) {
 		{
 			var casted bool
 
-			value, casted = result0.(string)
+			value, casted = result0.([32]byte)
 			if !casted {
 				return "", erorr.Errorf("stakewise: expected call to contract (%s) method %q to return result of type %T but actually was %T", receiver.ContractAddress(), methodname, value, result0)
 			}
