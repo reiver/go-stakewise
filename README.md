@@ -1,6 +1,6 @@
 # go-stakewise
 
-Package **stakewise** implements bindings for the StakeWise smart-contracts, for the Go programming language.
+Package **stakewise** implements bindings for the [StakeWise smart-contracts](https://github.com/stakewise), for the Go programming language.
 
 This could be for StakeWise on the Ethereum blockchain-network, or any other blockchain-network.
 
