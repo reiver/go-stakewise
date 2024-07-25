@@ -8,9 +8,11 @@ import (
 func (receiver Client) RewardsRoot() ([32]byte, error) {
 	const methodname string = "rewardsRoot"
 
+	var nothing [32]byte
+
 	results, err := receiver.Call(methodname)
 	if nil != err {
-		return "", err
+		return nothing, err
 	}
 
 	var value [32]byte
@@ -21,7 +23,7 @@ func (receiver Client) RewardsRoot() ([32]byte, error) {
 			var actual int = len(results)
 
 			if expected != actual {
-				return "", erorr.Errorf("stakewise: expected call to contract (%s) method %q to return %d result but actually got %d results", receiver.ContractAddress(), methodname, expected, actual)
+				return nothing, erorr.Errorf("stakewise: expected call to contract (%s) method %q to return %d result but actually got %d results", receiver.ContractAddress(), methodname, expected, actual)
 			}
 
 			result0 = results[0]
@@ -32,7 +34,7 @@ func (receiver Client) RewardsRoot() ([32]byte, error) {
 
 			value, casted = result0.([32]byte)
 			if !casted {
-				return "", erorr.Errorf("stakewise: expected call to contract (%s) method %q to return result of type %T but actually was %T", receiver.ContractAddress(), methodname, value, result0)
+				return nothing, erorr.Errorf("stakewise: expected call to contract (%s) method %q to return result of type %T but actually was %T", receiver.ContractAddress(), methodname, value, result0)
 			}
 		}
 	}
